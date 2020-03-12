@@ -1,0 +1,49 @@
+Repaso de comandos Git.
+
+Ejecutar en una terminal (GitBash en Windows o la terminal de linux con git instalado):
+
+# Creamos una carpeta
+mkdir testdir
+
+# Entramos en el directorio
+cd testdir
+
+# Vemos como se encuentra el estado del repositorio git pero nos da un error. Es correcto, todavía no existe un repositorio ahí.
+git status
+
+# Inicializamos el repositorio
+git init
+
+# Agregamos un archivo (se puede crear a mano también)
+touch file1.txt
+
+# Vemos como esta el repositorio. Nos muestra que hay un nuevo archivo para agregar
+git status
+
+# Agregamos el archivo (otra opción es agregar solo algunos archivos: git add file1.txt)
+git add .
+
+# Hacemos un commit, es decir una nueva versión de nuestro repositorio de control de versiones
+git commit -am "file1 agregado"
+
+# Agregamos otro archivo
+touch file2.txt
+
+# Hacemos otro commit
+git add .
+git commit -am "file2 agregado"
+
+# Vemos el historial de versiones del repositorio. Prestar atención al hash que muestra en cada versión
+git log
+
+# Podemos volver a una versión determinada de nuestro repositorio
+# con el parámetro --hard borraremos lo que sea mas nuevo con respecto a la versión que queremos volver
+# con el parámetro --soft solo eliminaremos los commit posteriores a la versión que queremos volver
+# Ejemplo: volver a la primer versión perdiendo los cambios de la segunda versión/commit (donde dice [hash] debería ir el código que vimos al ejecutar git log)
+git reset --hard [hash]
+
+# Agregar texto en el archivo file1.txt y ejecutar comando para ver las diferencias
+git diff file1.txt
+
+# Comando para subir los cambios al repositorio remoto (Por ejemplo GitHub)
+git push origin master
