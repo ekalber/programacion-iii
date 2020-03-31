@@ -12,8 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :brand %>
-    <%= form.text_field :brand %>
+    <%= form.label :brand_id %>
+    <%= form.collection_select(:brand_id, Brand.all, :id, :name) %>
+  </div>
+
+  <div class="field">
+    <%= form.label :doors %>
+    <%= form.number_field :doors %>
+  </div>
+
+  <div class="field">
+    <%= form.label :color %>
+    <%= form.text_field :color %>
   </div>
 
   <div class="field">

@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Car.populate 20 do |c|
+    c.model = Faker::Vehicle.model
+    c.year = 1990..2020 #Faker::Vehicle.year  
+    c.doors = 3..5
+    c.color = Faker::Vehicle.color
+end
+
+Brand.populate 10 do | b |
+    b.name = Faker::Vehicle.manufacture
+    b.fundation = Faker::Date.between(from: 120.years.ago, to: Date.today)
+end

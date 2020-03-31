@@ -45,3 +45,62 @@ ekalber@vm03-isi:~$ rake db:migrate
 ekalber@vm03-isi:~$ rails s
 
 # Entrar al recurso de administración de vehículos: http://localhost:3000/cars
+
+
+# Iteración 2
+
+# Si estás bajando el proyecto por primera vez, es probable que tengas que ejecutar los siguientes comandos:
+
+bundle
+yarn install --check-files
+rake db:migrate
+
+# Creamos un recurso para administrar las marcas
+
+rails g scaffold Brand name:string fundation:date
+
+# Eliminamos el campo marca (un texto) del vehículo
+
+rails g migration RemoveBrandFromCars brand:string
+
+# Agregamos nuevos campos a vehículo: puertas y color
+
+rails g migration AddDoorsAndColorToCars doors:integer color:string
+
+# Ejecutamos las migraciones para efectuar los cambios en la base de datos
+
+rake db:migrate
+
+# Instalamos dos gemas, populator y faker (ver configuración en Gemfile). Agregamos código en seeds para generar datos aleatorios y luego ejecutamos la tarea:
+
+rake db:seeds
+
+# Relacionamos el vehículo con la marca. En la migración el campo brand_id permitimos que sea nulo
+
+rails g migration AddBrandIdToCars brand:references
+
+# Creamos un recurso para administrar accesorios
+
+rails g scaffold Accessory name:string
+
+# Ejecutamos el generador de modelo para la tabla de relación entre accesorio y vehículo y no dió error pero advertimos que quedo mal...
+
+rails g model AccessoriesCar car:references accessory:reference
+
+# Para volver atrás usamos el generador de tipo "destroy" que nos borra todos los archivos para poder volver a generar correctamente:
+
+rails d model AccessoriesCar car:references accessory:reference
+
+# Ahora sí, modelo y migración para la tabla de relación:
+
+rails g model AccessoryCar car:references accessory:references
+
+# Ejecutamos las migraciones pendientes
+
+rake db:migrate
+
+# Luego agregamos un combo de selección de marca en el formulario de vehículos. También agregamos el nuevo campo en el controlador de vehículos. 
+
+# Agregamos los helpers de asociación entre modelos en cada uno de los modelos (belongs_to, has_many, etc.)
+
+# Agregamos validaciones.

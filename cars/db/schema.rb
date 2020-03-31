@@ -10,14 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_11_091451) do
+ActiveRecord::Schema.define(version: 2020_03_31_172950) do
 
-  create_table "cars", force: :cascade do |t|
-    t.string "brand"
-    t.string "model"
-    t.integer "year"
+  create_table "accessories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "accessories_cars", force: :cascade do |t|
+    t.integer "car_id", null: false
+    t.integer "accessory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["accessory_id"], name: "index_accessories_cars_on_accessory_id"
+    t.index ["car_id"], name: "index_accessories_cars_on_car_id"
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.date "fundation"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "cars", force: :cascade do |t|
+    t.string "model"
+    t.integer "year"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "doors"
+    t.string "color"
+    t.integer "brand_id"
+    t.index ["brand_id"], name: "index_cars_on_brand_id"
+  end
+
+  add_foreign_key "accessories_cars", "accessories"
+  add_foreign_key "accessories_cars", "cars"
+  add_foreign_key "cars", "brands"
 end

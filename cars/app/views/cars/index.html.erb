@@ -1,3 +1,5 @@
+<%= t('hello') %>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Cars</h1>
@@ -5,9 +7,11 @@
 <table>
   <thead>
     <tr>
-      <th>Brand</th>
-      <th>Model</th>
-      <th>Year</th>
+      <th>Nro. puertas</th>
+      <th>Color</th>
+      <th>Modelo</th>
+      <th>Año</th>
+      <th>Marca</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,9 +19,11 @@
   <tbody>
     <% @cars.each do |car| %>
       <tr>
-        <td><%= car.brand %></td>
+        <td><%= car.doors %></td>
+        <td><%= car.color %></td>
         <td><%= car.model %></td>
         <td><%= car.year %></td>
+        <td><%= car.brand.name unless car.brand.nil? %></td>
         <td><%= link_to 'Show', car %></td>
         <td><%= link_to 'Edit', edit_car_path(car) %></td>
         <td><%= link_to 'Destroy', car, method: :delete, data: { confirm: 'Are you sure?' } %></td>
