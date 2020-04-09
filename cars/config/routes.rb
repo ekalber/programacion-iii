@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :structures
+  resources :classifications
   resources :accessories
   resources :brands
   resources :cars

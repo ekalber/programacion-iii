@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_31_172950) do
+ActiveRecord::Schema.define(version: 2020_04_08_235614) do
 
   create_table "accessories", force: :cascade do |t|
     t.string "name"
@@ -42,10 +42,28 @@ ActiveRecord::Schema.define(version: 2020_03_31_172950) do
     t.integer "doors"
     t.string "color"
     t.integer "brand_id"
+    t.integer "classification_id"
+    t.integer "structure_id"
     t.index ["brand_id"], name: "index_cars_on_brand_id"
+    t.index ["classification_id"], name: "index_cars_on_classification_id"
+    t.index ["structure_id"], name: "index_cars_on_structure_id"
+  end
+
+  create_table "classifications", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "structures", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "accessories_cars", "accessories"
   add_foreign_key "accessories_cars", "cars"
   add_foreign_key "cars", "brands"
+  add_foreign_key "cars", "classifications"
+  add_foreign_key "cars", "structures"
 end

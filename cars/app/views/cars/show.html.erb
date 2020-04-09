@@ -19,6 +19,15 @@
   <strong>Year:</strong>
   <%= @car.year %>
 </p>
+<% unless @car.structure.nil? %>
+	<strong>Estructura:</strong>
+	<p><%= @car.structure.name %></p>
+<% end -%>
+
+<% unless @car.classification.nil? %>
+	<strong>Clasificación:</strong>
+	<p><%= @car.classification.name %></p>
+<% end -%>
 
 <%= link_to 'Edit', edit_car_path(@car) %> |
 <%= link_to 'Back', cars_path %>
