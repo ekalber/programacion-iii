@@ -10,6 +10,15 @@
   </head>
 
   <body>
+    <div style="font:12pt;color:yellow;background-color: black;">
+      <%= flash[:notice] %>
+    </div>
+      
+
+    <%= link_to "Estructuras", structures_path %> | 
+    <%= link_to "Vehículos", cars_path %> |
+    <%= link_to "Clasificación", classifications_path %> |
+    <%= link_to "Agregar vehículo", new_car_path %>
     <%= yield %>
   </body>
 </html>

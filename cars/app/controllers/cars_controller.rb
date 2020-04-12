@@ -5,7 +5,23 @@ class CarsController < ApplicationController
   # GET /cars.json
   def index
     @cars = Car.all
+    @cars = @cars.where(:color => params[:color]) unless params[:color].blank?
+    @cars = @cars.where(:brand_id => params[:brand_id]) unless params[:brand_id].blank?
+
+    @color = params[:color]
+    @brand_id = params[:brand_id]
+    session[:page] = 1
+
+    flash[:notice] = "Estas en el index de vehículos"
   end
+
+  def olds
+    @cars = Car.all
+    @cars = @cars.where("year < ?", 2000)
+
+    flash[:notice] = "Estas en el olds de vehículos"
+  end
+
 
   # GET /cars/1
   # GET /cars/1.json

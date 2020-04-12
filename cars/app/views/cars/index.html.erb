@@ -4,6 +4,19 @@
 
 <h1>Cars</h1>
 
+<form action="/cars" method="GET">
+  Color: <input type="text" name="color" value="<%= @color %>" />
+  Marca: 
+  <select name="brand_id"> 
+    <% Brand.all.each_with_index do | b, index | %>
+      <%#= link_to b.name, cars_path(:brand_id => b.id) %> 
+      <option value="<%= b.id %>" <%= b.id.to_s == @brand_id ? "selected" : "" %>><%= b.name %></option>
+    <% end -%>
+  </select>
+  <input type="submit" />
+</form>
+
+
 <table>
   <thead>
     <tr>
