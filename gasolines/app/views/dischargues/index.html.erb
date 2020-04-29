@@ -1,0 +1,61 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dischargues</h1>
+
+<h2>Filtros</h2>
+
+<form METHOD="GET" PATH="/dischargues" >
+  <div>
+    <label>Camión</label>
+    <select name="truck_id">
+      <% Truck.all.each do | t | %>
+        <option value="<%= t.id %>"><%= t.patent %></option>
+      <% end -%>
+    </select>
+  </div>
+  <div>
+    <label>Estación</label>
+    <select name="station_id">
+      <% Station.all.each do | s | %>
+        <option value="<%= s.id %>"><%= s.flag %></option>
+      <% end -%>
+    </select>
+  </div>
+  <div>
+    <label>Litros menores a</label>
+    <input type="number" name="liters">
+  </div>
+  <input type="submit" name="Buscar">
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Liters</th>
+      <th>Costo</th>
+      <th>Camión</th>
+      <th>Estación de servicio</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dischargues.each do |dischargue| %>
+      <tr>
+        <td><%= dischargue.liters %></td>
+        <td><%= number_to_currency(dischargue.total_amount) %></td>
+        <td><%= dischargue.load.truck.patent %></td>
+        <td><%= dischargue.station.flag %></td>
+        <td><%= dischargue.date %></td>
+        <td><%= link_to 'Show', dischargue %></td>
+        <td><%= link_to 'Edit', edit_dischargue_path(dischargue) %></td>
+        <td><%= link_to 'Destroy', dischargue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dischargue', new_dischargue_path %>

@@ -1,0 +1,39 @@
+<%= form_with(model: dischargue, local: true) do |form| %>
+  <% if dischargue.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dischargue.errors.count, "error") %> prohibited this dischargue from being saved:</h2>
+
+      <ul>
+        <% dischargue.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+
+ <div class="field">
+    <%= form.label :truck_id %>
+    <%= collection_select(nil, :truck_id, @trucks, :id, :patent) %>
+  </div>  
+
+  
+   <div class="field">
+    <%= form.label :station_id %>
+    <%= form.collection_select(:station_id, @stations, :id, :flag) %>
+  </div>  
+
+  <div class="field">
+    <%= form.label :liters %>
+    <%= form.number_field :liters %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

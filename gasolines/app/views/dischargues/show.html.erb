@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Liters:</strong>
+  <%= @dischargue.liters %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @dischargue.date %>
+</p>
+
+<%= link_to 'Edit', edit_dischargue_path(@dischargue) %> |
+<%= link_to 'Back', dischargues_path %>
