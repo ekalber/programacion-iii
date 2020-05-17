@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   USERS = { "admin" => "admin" }
  
-  before_action :authenticate
+  #before_action :authenticate
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
  
   private

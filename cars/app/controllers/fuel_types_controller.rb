@@ -4,8 +4,7 @@ class FuelTypesController < ApplicationController
   # GET /fuel_types
   # GET /fuel_types.json
   def index
-    @fuel_types = FuelType.all
-    @fuel_types = @fuel_types.where("name = #{params[:filter]}")
+    @fuel_types = FuelType.all    
   end
 
   # GET /fuel_types/1
@@ -41,8 +40,11 @@ class FuelTypesController < ApplicationController
   # PATCH/PUT /fuel_types/1
   # PATCH/PUT /fuel_types/1.json
   def update
+    @fuel_type = FuelType.new(fuel_type_params)
+    @fuel_type.id = params[:id]
+
     respond_to do |format|
-      if @fuel_type.update(fuel_type_params)
+      if @fuel_type.save
         format.html { redirect_to @fuel_type, notice: 'Fuel type was successfully updated.' }
         format.json { render :show, status: :ok, location: @fuel_type }
       else

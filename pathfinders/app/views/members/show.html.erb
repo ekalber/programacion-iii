@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @member.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @member.last_name %>
+</p>
+
+<p>
+  <strong>Document number:</strong>
+  <%= @member.document_number %>
+</p>
+
+<p>
+  <strong>Birth date:</strong>
+  <%= @member.birth_date %>
+</p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @member.phone_number %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @member.email %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @member.unit_id %>
+</p>
+
+<h1>Especialidades</h1>
+<% @member.honors.each do | h | %>
+  <%= link_to h.name, honor_path(h.id) %><br>
+<% end -%><br>
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>
