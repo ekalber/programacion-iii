@@ -13,6 +13,9 @@
     <div style="font:12pt;color:yellow;background-color: black;">
       <%= flash[:notice] %>
     </div>
+    <% response = Faraday.get("https://ws.smn.gob.ar/map_items/forecast/1", {}, {'Accept' => 'application/json'}) %>
+
+    <%= response.inspect %>
       
     <%= link_to "Tipos de combustible", fuel_types_path %> | 
     <%= link_to "Estructuras", structures_path %> | 
