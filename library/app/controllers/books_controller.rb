@@ -4,7 +4,10 @@ class BooksController < ApplicationController
   # GET /books or /books.json
   def index
     @books = Book.all
+    @books = @books.where(:category_id => params[:category_id]) if params[:category_id]
+    @books = @books.joins(:authors).where(:authors => {:id => params[:author_id]}) if params[:author_id]
     @books = @books.where(["title LIKE :filter", :filter => ("%" + params[:filter] + "%")]) unless params[:filter].blank?
+    
   end
 
   # GET /books/1 or /books/1.json

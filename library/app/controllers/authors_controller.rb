@@ -3,7 +3,9 @@ class AuthorsController < ApplicationController
 
   # GET /authors or /authors.json
   def index
-    @authors = Author.all
+    session[:user_logged] = "Rafael Santos Borré"
+    @authors = Author.all    
+    @authors = @authors.order(params[:by] + " " + params[:order]) if params[:sort] == "true"
   end
 
   # GET /authors/1 or /authors/1.json

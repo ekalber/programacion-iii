@@ -13,6 +13,7 @@
       <th>Title</th>
       <th>Description</th>
       <th>Category</th>
+      <th>Is new?</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
         <td><%= book.title %></td>
         <td><%= book.description %></td>
         <td><%= book.category.name unless book.category.nil? %></td>
+        <td><%= book.is_new %></td>
         <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -13,7 +13,8 @@
   <body>
     <%= link_to "Autores", authors_path %> | 
     <%= link_to "Libros", books_path %> | 
-    <%= link_to "Categorías", categories_path %> <br>
+    <%= link_to "Categorías", categories_path %> |
+    <strong>Usuario logueado:</strong> <%= session[:user_logged] %><br><br>
     <%= yield %>
   </body>
 </html>
