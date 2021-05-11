@@ -1,0 +1,46 @@
+<%= form_with(model: task) do |form| %>
+  <% if task.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :assignment_date %>
+    <%= form.date_select :assignment_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :finish_date %>
+    <%= form.date_select :finish_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :state %>
+    <select name="task[state]">
+      <option value="1">Sin iniciar</option>
+      <option value="2">En progreso</option>
+      <option value="3">Finalizada</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <%= form.label :person_id %>
+    <%= form.collection_select(:person_id, Person.all, :id, :full_name) %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

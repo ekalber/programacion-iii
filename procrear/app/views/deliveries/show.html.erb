@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @delivery.date %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @delivery.amount %>
+</p>
+
+<p>
+  <strong>Loan:</strong>
+  <%= @delivery.loan_id %>
+</p>
+
+<%= link_to 'Edit', edit_delivery_path(@delivery) %> |
+<%= link_to 'Back', deliveries_path %>
