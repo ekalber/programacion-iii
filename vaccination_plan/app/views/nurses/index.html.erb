@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Nurses</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th><%= link_to "First name", nurses_path(:sort => true, :by => "first_name", :order => (params[:order] == "asc" ? "desc" : "asc")) %></th>
+      <th><%= link_to "Last name", nurses_path(:sort => true, :by => "last_name", :order => (params[:order] == "asc" ? "desc" : "asc")) %></th>
+      <th><%= link_to "User", nurses_path(:sort => true, :by => "user_id", :order => (params[:order] == "asc" ? "desc" : "asc")) %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @nurses.each do |nurse| %>
+      <tr>
+        <td><%= nurse.first_name %></td>
+        <td><%= nurse.last_name %></td>
+        <td><%= nurse.user.email %></td>
+        <td><%= link_to nurse.vaccine_applications.count, vaccine_applications_path(:nurse_id => nurse.id) %></td>
+        <td><%= link_to 'Show', nurse %></td>
+        <td><%= link_to 'Edit', edit_nurse_path(nurse) %></td>
+        <td><%= link_to 'Destroy', nurse, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @nurses %>
+<br>
+
+<%= link_to 'New Nurse', new_nurse_path %>

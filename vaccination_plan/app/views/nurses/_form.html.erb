@@ -1,0 +1,32 @@
+<%= form_with(model: nurse) do |form| %>
+  <% if nurse.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(nurse.errors.count, "error") %> prohibited this nurse from being saved:</h2>
+
+      <ul>
+        <% nurse.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3 row">
+    <%= form.label :user_id %>
+    <%= form.collection_select(:user_id, User.all, :id, :email) %>
+  </div>
+
+  <div class="mb-3 row">
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div class="mb-3 row">
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

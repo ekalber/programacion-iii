@@ -1,0 +1,2 @@
+module VaccineApplicationsHelper
+end
